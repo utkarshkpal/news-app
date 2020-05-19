@@ -1,26 +1,24 @@
 import React from "react";
 
-export default function NewsListItem() {
+export default function NewsListItem({ newsItem }) {
+  const { numComments, points, title, author, createdAt, url } = newsItem;
   return (
     <div className="news-list-item">
-      <div className="comment">88</div>
-      <div className="vote-count">222</div>
+      <div className="comment">{numComments}</div>
+      <div className="vote-count">{points}</div>
       <div className="upvotes">
         <div className="arrow-up"></div>
       </div>
       <div className="news-details">
         <div className="news-title">
-          <a href="">
-            Your Apps Know Where You Were Last Night, and They're Not Keeping It
-            Secret
-          </a>
+          <a href="">{title}</a>
         </div>
-        <div className="news-source">(nytimes.com)</div>
+        {/* <div className="news-source">{url}</div> */}
         by
         <div className="news-person" style={{ fontWeight: "bold" }}>
-          pci
+          {author}
         </div>
-        <div className="news-time">2 hours ago</div>
+        <div className="news-time">{createdAt}</div>
         <div className="news-hide-option" style={{ fontWeight: "bold" }}>
           [hide]
         </div>

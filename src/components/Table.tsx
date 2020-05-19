@@ -17,7 +17,10 @@ export default function Table({ news }) {
       <Header />
 
       <div className="news-list">
-        <NewsListItem />
+        {news.map((newsItem) => (
+          <NewsListItem newsItem={newsItem} />
+        ))}
+
         <div className="paging-footer">
           <button className="paging">Previous |</button>
           <button className="paging">Next</button>
