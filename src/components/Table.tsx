@@ -11,10 +11,11 @@ const Header = () => (
   </div>
 );
 
-export default function table() {
+export default function Table({ news }) {
   return (
     <div className="container">
       <Header />
+
       <div className="news-list">
         <NewsListItem />
         <div className="paging-footer">
