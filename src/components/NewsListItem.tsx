@@ -1,12 +1,35 @@
 import React from "react";
 
-export default function NewsListItem({ newsItem }) {
-  const { numComments, points, title, author, createdAt, url } = newsItem;
+interface OwnProps {
+  newsItem: any;
+  incrementUpvote(id: string): void;
+  hideNews(id: string): void;
+}
+
+export default function NewsListItem({
+  newsItem,
+  incrementUpvote,
+  hideNews,
+}: OwnProps) {
+  const {
+    numComments,
+    points,
+    title,
+    author,
+    createdAt,
+    url,
+    objectID,
+  } = newsItem;
   return (
     <div className="news-list-item">
       <div className="comment">{numComments}</div>
       <div className="vote-count">{points}</div>
-      <div className="upvotes">
+      <div
+        onClick={() => {
+          incrementUpvote(objectID);
+        }}
+        className="upvotes"
+      >
         <div className="arrow-up"></div>
       </div>
       <div className="news-details">
@@ -19,7 +42,13 @@ export default function NewsListItem({ newsItem }) {
           {author}
         </div>
         <div className="news-time">{createdAt}</div>
-        <div className="news-hide-option" style={{ fontWeight: "bold" }}>
+        <div
+          onClick={() => {
+            hideNews(objectID);
+          }}
+          className="news-hide-option"
+          style={{ fontWeight: "bold" }}
+        >
           [hide]
         </div>
       </div>

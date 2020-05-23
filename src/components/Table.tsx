@@ -11,19 +11,43 @@ const Header = () => (
   </div>
 );
 
-export default function Table({ news }) {
+export default function Table({
+  news,
+  incrementUpvote,
+  hideNews,
+  fetchNews,
+  currentPage,
+}) {
   return (
     <div className="container">
       <Header />
 
       <div className="news-list">
         {news.map((newsItem) => (
-          <NewsListItem newsItem={newsItem} />
+          <NewsListItem
+            newsItem={newsItem}
+            incrementUpvote={incrementUpvote}
+            hideNews={hideNews}
+          />
         ))}
 
         <div className="paging-footer">
-          <button className="paging">Previous |</button>
-          <button className="paging">Next</button>
+          <button
+            onClick={() => {
+              fetchNews(currentPage - 1);
+            }}
+            className="paging"
+          >
+            Previous |
+          </button>
+          <button
+            onClick={() => {
+              fetchNews(currentPage + 1);
+            }}
+            className="paging"
+          >
+            Next
+          </button>
         </div>
       </div>
       {/* <div className="foot-graph">This is where Graph plotthing will come</div> */}
