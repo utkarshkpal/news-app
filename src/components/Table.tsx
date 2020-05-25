@@ -23,7 +23,7 @@ export default function Table({
       <Header />
 
       <div className="news-list">
-        {news.map((newsItem) => (
+        {news?.map((newsItem) => (
           <NewsListItem
             newsItem={newsItem}
             incrementUpvote={incrementUpvote}
@@ -34,7 +34,9 @@ export default function Table({
         <div className="paging-footer">
           <button
             onClick={() => {
-              fetchNews(currentPage - 1);
+              if (currentPage > 0) {
+                fetchNews(currentPage - 1);
+              }
             }}
             className="paging"
           >
