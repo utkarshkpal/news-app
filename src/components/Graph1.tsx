@@ -17,7 +17,7 @@ export default function Graph1({ news }) {
 
   useEffect(() => {
     const canvas = document.getElementById("myChart") as HTMLCanvasElement;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas?.getContext("2d");
 
     myChart = new chart(ctx, {
       type: "line",

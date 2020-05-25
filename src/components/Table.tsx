@@ -22,9 +22,10 @@ export default function Table({
     <div className="container">
       <Header />
 
-      <div className="news-list">
+      <ul data-testid="news-list" className="news-list">
         {news?.map((newsItem) => (
           <NewsListItem
+            key={newsItem.objectID}
             newsItem={newsItem}
             incrementUpvote={incrementUpvote}
             hideNews={hideNews}
@@ -39,6 +40,7 @@ export default function Table({
               }
             }}
             className="paging"
+            data-testid="previous"
           >
             Previous |
           </button>
@@ -47,11 +49,12 @@ export default function Table({
               fetchNews(currentPage + 1);
             }}
             className="paging"
+            data-testid="next"
           >
             Next
           </button>
         </div>
-      </div>
+      </ul>
       {/* <div className="foot-graph">This is where Graph plotthing will come</div> */}
     </div>
   );

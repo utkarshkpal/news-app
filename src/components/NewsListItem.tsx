@@ -21,10 +21,13 @@ export default function NewsListItem({
     objectID,
   } = newsItem;
   return (
-    <div className="news-list-item">
+    <li key={objectID} className="news-list-item" data-testid="news-list-item">
       <div className="comment">{numComments}</div>
-      <div className="vote-count">{points}</div>
+      <div data-testid="vote-count" className="vote-count">
+        {points}
+      </div>
       <div
+        data-testid="upvote"
         onClick={() => {
           incrementUpvote(objectID);
         }}
@@ -33,8 +36,8 @@ export default function NewsListItem({
         <div className="arrow-up"></div>
       </div>
       <div className="news-details">
-        <div className="news-title">
-          <a href="">{title}</a>
+        <div data-testid="news-title" className="news-title">
+          {title}
         </div>
         {/* <div className="news-source">{url}</div> */}
         by
@@ -43,6 +46,7 @@ export default function NewsListItem({
         </div>
         <div className="news-time">{createdAt}</div>
         <div
+          data-testid="news-hide"
           onClick={() => {
             hideNews(objectID);
           }}
@@ -52,6 +56,6 @@ export default function NewsListItem({
           [hide]
         </div>
       </div>
-    </div>
+    </li>
   );
 }

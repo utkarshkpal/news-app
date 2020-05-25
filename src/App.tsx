@@ -4,7 +4,6 @@ import "./App.css";
 import Table from "./components/Table";
 import Graph1 from "./components/Graph1";
 import ApiProviders from "./services/ApiProviders";
-import { isNotEmpty } from "JSHelper";
 
 const ServiceProvider = new ApiProviders();
 
@@ -72,20 +71,17 @@ const App = () => {
     fetchNews(currentPage);
   }, []);
 
-  console.log("App -> news", news);
-
   return (
     <div className="App">
-      {isNotEmpty(news) && (
-        <Table
-          incrementUpvote={incrementUpvote}
-          news={news[currentPage]}
-          hideNews={hideNews}
-          fetchNews={fetchNews}
-          currentPage={currentPage}
-        />
-      )}
-      {isNotEmpty(news) && <Graph1 news={news[currentPage]} />}
+      <Table
+        incrementUpvote={incrementUpvote}
+        news={news[currentPage]}
+        hideNews={hideNews}
+        fetchNews={fetchNews}
+        currentPage={currentPage}
+      />
+
+      <Graph1 news={news[currentPage]} />
     </div>
   );
 };
