@@ -8,3 +8,7 @@ export const isEmpty = (obj: any): boolean => {
 };
 
 export const isNotEmpty = (obj: any): boolean => !isEmpty(obj);
+
+export const isServer = (): boolean => {
+  return !(typeof window != "undefined" && window.document);
+};

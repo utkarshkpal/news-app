@@ -6,11 +6,7 @@ interface OwnProps {
   hideNews(id: string): void;
 }
 
-export default function NewsListItem({
-  newsItem,
-  incrementUpvote,
-  hideNews,
-}: OwnProps) {
+export default function NewsListItem({ newsItem, incrementUpvote, hideNews }) {
   const {
     numComments,
     points,

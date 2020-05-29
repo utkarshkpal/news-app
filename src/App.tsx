@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import Table from "./components/Table";
 import Graph1 from "./components/Graph1";
 import ApiProviders from "./services/ApiProviders";
+import { isServer, isNotEmpty } from "./JSHelper";
 
 const ServiceProvider = new ApiProviders();
 
@@ -11,18 +11,23 @@ interface pageData {
   hits: object[];
   page: number;
 }
+
 const getPageFromUrl = (): number => {
+  let page = 0;
+
   const urlParams = new URLSearchParams(window.location.search);
-  const page = urlParams.get("p");
-  return page ? Number(page) : 0;
+  page = Number(urlParams.get("p"));
+
+  return page;
 };
 
 const getAppState = () => {
-  const data = JSON.parse(localStorage.getItem("news"));
-  return data ? data : {};
+  let data = {};
+  data = JSON.parse(localStorage.getItem("news"));
+  return data;
 };
 
-const App = () => {
+export default function App() {
   const [news, setNews] = useState(getAppState());
   const [currentPage, setcurrentPage] = useState(getPageFromUrl());
 
@@ -54,13 +59,11 @@ const App = () => {
   };
 
   const fetchNews = (page: number = 0): void => {
-    if (!news[page]) {
-      ServiceProvider.fetchNewsByPage(page).then(({ hits, page }) => {
-        setNews({ ...news, [page]: hits });
-        setcurrentPage(page);
-        updateUrl(page);
-      });
-    }
+    ServiceProvider.fetchNewsByPage(page).then(({ hits, page }) => {
+      setNews({ ...news, [page]: hits });
+      setcurrentPage(page);
+      updateUrl(page);
+    });
   };
 
   useEffect(() => {
@@ -75,15 +78,13 @@ const App = () => {
     <div className="App">
       <Table
         incrementUpvote={incrementUpvote}
-        news={news[currentPage]}
+        news={isNotEmpty(news) ? news[currentPage] : []}
         hideNews={hideNews}
         fetchNews={fetchNews}
         currentPage={currentPage}
       />
-
-      <Graph1 news={news[currentPage]} />
+      )
+      <Graph1 news={isNotEmpty(news) ? news[currentPage] : []} />
     </div>
   );
-};
-
-export default App;
+}
