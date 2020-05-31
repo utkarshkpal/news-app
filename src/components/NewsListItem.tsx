@@ -34,7 +34,7 @@ export default function NewsListItem({ newsItem, incrementUpvote, hideNews }) {
       </div>
       <div className="news-details">
         <div className="news-details-item">
-          <a target="_blank" href={url}>
+          <a rel="noopener noreferrer" target="_blank" href={url}>
             <div data-testid="news-title" className="news-title">
               {title}
             </div>

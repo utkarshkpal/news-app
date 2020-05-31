@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import Table from "./components/Table";
-import Graph1 from "./components/Graph1";
+import Graph from "./components/Graph";
 import ApiProviders from "./services/ApiProviders";
-import { isServer, isNotEmpty } from "./JSHelper";
+import { isNotEmpty } from "./JSHelper";
 
 const ServiceProvider = new ApiProviders();
-
-interface pageData {
-  hits: object[];
-  page: number;
-}
 
 const getPageFromUrl = (): number => {
   let page = 0;
@@ -83,7 +78,7 @@ export default function App() {
         fetchNews={fetchNews}
         currentPage={currentPage}
       />
-      <Graph1 news={isNotEmpty(news) ? news[currentPage] : []} />
+      <Graph news={isNotEmpty(news) ? news[currentPage] : []} />
     </div>
   );
 }

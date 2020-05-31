@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import chart from "chart.js";
 
-export default function Graph1({ news }) {
-  let myChart;
-
+export default function Graph({ news }) {
   const getLabels = () => news?.map((elem) => elem?.objectID);
   const getData = () => news?.map((elem) => elem?.points);
 
@@ -11,7 +9,7 @@ export default function Graph1({ news }) {
     const canvas = document.getElementById("myChart") as HTMLCanvasElement;
     const ctx = canvas?.getContext("2d");
 
-    myChart = new chart(ctx, {
+    const myChart = new chart(ctx, {
       type: "line",
       data: {
         labels: getLabels(),
