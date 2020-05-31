@@ -17,7 +17,7 @@ export default function Table({
   news,
   incrementUpvote,
   hideNews,
-  fetchNews,
+  setcurrentPage,
   currentPage,
 }) {
   return (
@@ -39,7 +39,7 @@ export default function Table({
             <button
               onClick={() => {
                 if (currentPage > 0) {
-                  fetchNews(currentPage - 1);
+                  setcurrentPage(currentPage - 1);
                 }
               }}
               className="paging"
@@ -49,7 +49,7 @@ export default function Table({
             </button>
             <button
               onClick={() => {
-                fetchNews(currentPage + 1);
+                setcurrentPage(currentPage + 1);
               }}
               className="paging"
               data-testid="next"

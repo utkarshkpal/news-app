@@ -5,13 +5,13 @@ import * as news from "./mockNewsData.json";
 
 const incrementUpvote = jest.fn();
 const hideNews = jest.fn();
-const fetchNews = jest.fn();
+const setcurrentPage = jest.fn();
 
 const tableProps = {
   currentPage: 1,
   incrementUpvote,
   hideNews,
-  fetchNews,
+  setcurrentPage,
   news: news.hits,
 };
 
@@ -27,9 +27,9 @@ it("renders 20 news at a time", () => {
 });
 
 it("calls fetchNews prop on clicking next with correct page number", () => {
-  const { currentPage, fetchNews } = tableProps;
+  const { currentPage, setcurrentPage } = tableProps;
   const { getByTestId } = render(<Table {...tableProps} />);
   const nextBtn = getByTestId("next");
   fireEvent.click(nextBtn);
-  expect(fetchNews).toHaveBeenCalledWith(currentPage + 1);
+  expect(setcurrentPage).toHaveBeenCalledWith(currentPage + 1);
 });

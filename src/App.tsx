@@ -8,18 +8,14 @@ import { isNotEmpty } from "./JSHelper";
 const ServiceProvider = new ApiProviders();
 
 const getPageFromUrl = (): number => {
-  let page = 0;
-
   const urlParams = new URLSearchParams(window.location.search);
-  page = Number(urlParams.get("p"));
-
-  return page;
+  const page = urlParams.get("p");
+  return page ? Number(page) : 0;
 };
 
 const getAppState = () => {
-  let data = {};
-  data = JSON.parse(localStorage.getItem("news"));
-  return data;
+  const data = JSON.parse(localStorage.getItem("news"));
+  return data ? data : {};
 };
 
 export default function App() {
@@ -54,11 +50,11 @@ export default function App() {
   };
 
   const fetchNews = (page: number = 0): void => {
-    ServiceProvider.fetchNewsByPage(page).then(({ hits, page }) => {
-      setNews({ ...news, [page]: hits });
-      setcurrentPage(page);
-      updateUrl(page);
-    });
+    if (!news[page]) {
+      ServiceProvider.fetchNewsByPage(page).then(({ hits, page }) => {
+        setNews({ ...news, [page]: hits });
+      });
+    }
   };
 
   useEffect(() => {
@@ -67,18 +63,24 @@ export default function App() {
 
   useEffect(() => {
     fetchNews(currentPage);
+    updateUrl(currentPage);
+  }, [currentPage]);
+
+  useEffect(() => {
+    fetchNews(currentPage);
+    updateUrl(currentPage);
   }, []);
 
   return (
     <div className="App">
       <Table
         incrementUpvote={incrementUpvote}
-        news={isNotEmpty(news) ? news[currentPage] : []}
+        news={news[currentPage]}
         hideNews={hideNews}
-        fetchNews={fetchNews}
+        setcurrentPage={setcurrentPage}
         currentPage={currentPage}
       />
-      <Graph news={isNotEmpty(news) ? news[currentPage] : []} />
+      <Graph news={news[currentPage]} />
     </div>
   );
 }
