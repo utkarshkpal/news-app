@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 
 interface OwnProps {
   newsItem: any;
@@ -18,8 +19,8 @@ export default function NewsListItem({ newsItem, incrementUpvote, hideNews }) {
   } = newsItem;
   return (
     <li key={objectID} className="news-list-item" data-testid="news-list-item">
-      <div className="comment">{numComments}</div>
-      <div data-testid="vote-count" className="vote-count">
+      <div className="comment item">{numComments ? numComments : "_"}</div>
+      <div data-testid="vote-count item" className="vote-count">
         {points}
       </div>
       <div
@@ -32,24 +33,31 @@ export default function NewsListItem({ newsItem, incrementUpvote, hideNews }) {
         <div className="arrow-up"></div>
       </div>
       <div className="news-details">
-        <div data-testid="news-title" className="news-title">
-          {title}
+        <div className="news-details-item">
+          <a target="_blank" href={url}>
+            <div data-testid="news-title" className="news-title">
+              {title}
+            </div>
+          </a>
         </div>
-        {/* <div className="news-source">{url}</div> */}
-        by
-        <div className="news-person" style={{ fontWeight: "bold" }}>
-          {author}
+        <div className="news-details-item">
+          <span>by</span>
+          <span className="news-person" style={{ fontWeight: "bold" }}>
+            {author}
+          </span>
         </div>
-        <div className="news-time">{createdAt}</div>
-        <div
-          data-testid="news-hide"
-          onClick={() => {
-            hideNews(objectID);
-          }}
-          className="news-hide-option"
-          style={{ fontWeight: "bold" }}
-        >
-          [hide]
+        <div className="news-details-item">
+          <span className="news-time">{moment(createdAt).fromNow()}</span>
+          <span
+            data-testid="news-hide"
+            onClick={() => {
+              hideNews(objectID);
+            }}
+            className="news-hide"
+            style={{ fontWeight: "bold" }}
+          >
+            [hide]
+          </span>
         </div>
       </div>
     </li>

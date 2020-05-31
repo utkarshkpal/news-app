@@ -83,7 +83,6 @@ export default function App() {
         fetchNews={fetchNews}
         currentPage={currentPage}
       />
-      )
       <Graph1 news={isNotEmpty(news) ? news[currentPage] : []} />
     </div>
   );

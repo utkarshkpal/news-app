@@ -5,10 +5,10 @@ import NewsListItem from "./NewsListItem";
 function Header() {
   return (
     <div className="nav-bar">
-      <div className="comment">Comments</div>
-      <div className="vote-count">Vote Count</div>
-      <div className="upvotes">UpVote</div>
-      <div className="news-details">News Details</div>
+      <div className="comment nav-item">Comments</div>
+      <div className="vote-count nav-item">Vote Count</div>
+      <div className="upvotes nav-item">UpVote</div>
+      <div className=" nav-item nav-details  ">News Details</div>
     </div>
   );
 }
@@ -35,29 +35,30 @@ export default function Table({
         ))}
 
         <div className="paging-footer">
-          <button
-            onClick={() => {
-              if (currentPage > 0) {
-                fetchNews(currentPage - 1);
-              }
-            }}
-            className="paging"
-            data-testid="previous"
-          >
-            Previous |
-          </button>
-          <button
-            onClick={() => {
-              fetchNews(currentPage + 1);
-            }}
-            className="paging"
-            data-testid="next"
-          >
-            Next
-          </button>
+          <div className="paging-item">
+            <button
+              onClick={() => {
+                if (currentPage > 0) {
+                  fetchNews(currentPage - 1);
+                }
+              }}
+              className="paging"
+              data-testid="previous"
+            >
+              Previous |
+            </button>
+            <button
+              onClick={() => {
+                fetchNews(currentPage + 1);
+              }}
+              className="paging"
+              data-testid="next"
+            >
+              Next
+            </button>
+          </div>
         </div>
       </ul>
-      {/* <div className="foot-graph">This is where Graph plotthing will come</div> */}
     </div>
   );
 }

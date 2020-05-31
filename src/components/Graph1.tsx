@@ -4,14 +4,6 @@ import chart from "chart.js";
 export default function Graph1({ news }) {
   let myChart;
 
-  //   const updateChart = (): void => {
-  //     myChart.data.labels.push(getLabels());
-  //     myChart.data.datasets.forEach((dataset) => {
-  //       dataset.data.push(getData());
-  //     });
-  //     myChart.update();
-  //   };
-
   const getLabels = () => news?.map((elem) => elem?.objectID);
   const getData = () => news?.map((elem) => elem?.points);
 
@@ -26,11 +18,11 @@ export default function Graph1({ news }) {
         datasets: [
           {
             label: "Votes",
-            borderColor: "#80b6f4",
-            pointBorderColor: "#80b6f4",
-            pointBackgroundColor: "#80b6f4",
-            pointHoverBackgroundColor: "#80b6f4",
-            pointHoverBorderColor: "#80b6f4",
+            borderColor: "#1b619a",
+            pointBorderColor: "#1b619a",
+            pointBackgroundColor: "#1b619a",
+            pointHoverBackgroundColor: "#1b619a",
+            pointHoverBorderColor: "#1b619a",
             pointBorderWidth: 5,
             pointHoverRadius: 8,
             pointHoverBorderWidth: 1,
@@ -87,12 +79,8 @@ export default function Graph1({ news }) {
     });
   }, [news]);
 
-  //   useEffect(() => {
-  //     updateChart();
-  //   }, [news]);
-
   return (
-    <div style={{ padding: 50 }}>
+    <div style={{ marginTop: 50 }}>
       <canvas id="myChart"></canvas>
     </div>
   );

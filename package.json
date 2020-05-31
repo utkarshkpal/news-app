@@ -22,6 +22,8 @@
     "husky": "^4.2.5",
     "ignore-styles": "^5.0.1",
     "lint-staged": "^10.2.6",
+    "moment": "^2.26.0",
+    "normalize.css": "^8.0.1",
     "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
