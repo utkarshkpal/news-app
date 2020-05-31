@@ -35,7 +35,7 @@ it("correctly renders news upvote count and title of a given news", () => {
     />
   );
   const renderedTitle = getByTestId("news-title");
-  const renderedUpvotes = getByTestId("vote-count");
+  const renderedUpvotes = getByTestId("vote-count-item");
 
   expect(renderedTitle.innerHTML).toBe(newsItem.title);
   expect(Number(renderedUpvotes.innerHTML)).toBe(newsItem.points);

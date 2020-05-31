@@ -20,7 +20,7 @@ export default function NewsListItem({ newsItem, incrementUpvote, hideNews }) {
   return (
     <li key={objectID} className="news-list-item" data-testid="news-list-item">
       <div className="comment item">{numComments ? numComments : "_"}</div>
-      <div data-testid="vote-count item" className="vote-count">
+      <div data-testid="vote-count-item" className="vote-count">
         {points}
       </div>
       <div
