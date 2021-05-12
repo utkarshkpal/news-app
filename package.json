@@ -18,7 +18,7 @@
     "axios": "^0.19.2",
     "bizcharts": "3.5.8",
     "camelcase-keys-deep": "^0.1.0",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "husky": "^4.2.5",
     "ignore-styles": "^5.0.1",
     "lint-staged": "^10.2.6",
